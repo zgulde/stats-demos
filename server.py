@@ -33,4 +33,4 @@ if __name__ == "__main__":
     import waitress
     import sys
 
-    waitress.seve(app, port=5000 if len(sys.argv) < 2 else int(sys.argv[1]))
+    waitress.serve(app, port=5000 if len(sys.argv) < 2 else int(sys.argv[1]))
