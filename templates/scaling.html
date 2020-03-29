@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <div class="container">
+        <h1 class="text-center">Scaling Demo</h1>
+        <div class="row">
+
+
+            <div class="col-lg-8">
+                <h2 class="text-center">output</h2>
+                <img id="output" class="img-fluid">
+            </div>
+
+            <form class="col-lg-4">
+                <h2 class="text-center">Options</h2>
+
+                <h3 class="my-2">Dataset</h3>
+                {% for dataset in datasets %}
+                    <div class="form-check">
+                        <input class="form-check-input" id="dataset{{ loop.index }}" type="radio" name="dataset" value="{{ dataset }}">
+                        <label class="form-check-label" for="dataset{{ loop.index }}">
+                            {{ dataset }}
+                        </label>
+                    </div>
+                {% endfor %}
+
+                <h3 class="my-2">Scaler</h3>
+                {% for scaler in scalers %}
+                    <div class="form-check">
+                        <input class="form-check-input" id="scaler{{ loop.index }}" type="radio" name="scaler" value="{{ scaler }}">
+                      <label class="form-check-label" for="scaler{{ loop.index }}">
+                          {{ scaler }}
+                      </label>
+                    </div>
+                {% endfor %}
+
+                <input class="my-4 btn btn-block btn-primary" type="submit" value="Go!" />
+            </form>
+
+        </div>
+    </div>
+
+    <script>
+        const $form = $('form');
+        const handleFormSubmission = e => {
+            e.preventDefault();
+            console.log($form.serialize());
+            $('#output').attr('src', '/scaling-viz?' + $form.serialize())
+        };
+        $form.submit(handleFormSubmission);
+
+    </script>
+
+</body>
+</html>
+
