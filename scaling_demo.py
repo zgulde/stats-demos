@@ -1,9 +1,13 @@
+import matplotlib as mpl
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 import scipy.stats as stats
-
 import sklearn.preprocessing
+
+# Set a non-interactive backend
+# see https://github.com/matplotlib/matplotlib/issues/14304#issuecomment-545717061
+mpl.use("agg")
 
 SCALERS = {
     "min-max": sklearn.preprocessing.MinMaxScaler(),
