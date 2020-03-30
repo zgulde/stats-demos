@@ -22,11 +22,12 @@ SCALERS = {
 }
 
 DATASETS = {
-    "small": np.array([0, 1, 2, 3, 100]),
-    "uniform random": np.random.uniform(1, 100, 1000),
-    "skewed left": stats.skewnorm(-5, 50, 5).rvs(1000),
-    "skewed right": stats.skewnorm(5, 50, 5).rvs(1000),
-    "normal": np.random.normal(50, 5, 1000),
+    "small (n=6)": np.array([1, 2, 3, 4, 2, 3]),
+    "small w/ one outlier (n=6)": np.array([1, 2, 3, 4, 2, 100]),
+    "uniform random (1-100, n=1000)": np.random.uniform(1, 100, 1000),
+    "skewed left (50 ± 5, n=1000)": stats.skewnorm(-5, 50, 5).rvs(1000),
+    "skewed right (50 ± 5), n=1000": stats.skewnorm(5, 50, 5).rvs(1000),
+    "normal (50 ± 5),, n=1000": np.random.normal(50, 5, 1000),
 }
 
 
