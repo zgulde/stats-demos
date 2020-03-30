@@ -19,6 +19,9 @@ SCALERS = {
     "power (yeo-johnson)": sklearn.preprocessing.PowerTransformer(),
     "power (box-cox)": sklearn.preprocessing.PowerTransformer(method="box-cox"),
     "robust": sklearn.preprocessing.RobustScaler(),
+    "log base 10": sklearn.preprocessing.FunctionTransformer(
+        func=np.log10, inverse_func=lambda x: 10 ** x
+    ),
 }
 
 DATASETS = {
@@ -28,6 +31,7 @@ DATASETS = {
     "skewed left (50 ± 5, n=1000)": stats.skewnorm(-5, 50, 5).rvs(1000),
     "skewed right (50 ± 5), n=1000": stats.skewnorm(5, 50, 5).rvs(1000),
     "normal (50 ± 5),, n=1000": np.random.normal(50, 5, 1000),
+    "exponential (n=1000)": 10 ** np.random.normal(2, 1, 1000),
 }
 
 
@@ -48,6 +52,7 @@ def visualize_scaler(scaler_name, data_name, base=6):
 def _visualize_scaler(scaler, data, base, scaler_name, data_name):
     nrows = 2
     ncols = 2
+    plt.rc("font", size=16)
     fig, axs = plt.subplots(nrows, ncols, figsize=(ncols * base, nrows * base))
 
     df = pd.DataFrame(dict(original=data))
