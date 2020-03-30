@@ -61,8 +61,10 @@
             $output.attr('src', '/scaling-viz?' + $form.serialize())
 
             $submitBtn.addClass('disabled');
+            $output.css('opacity', '30%');
             $output.on('load', () => {
                 $submitBtn.removeClass('disabled');
+                $output.css('opacity', '100%');
             });
         };
 
