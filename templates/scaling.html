@@ -15,12 +15,6 @@
         <h1 class="text-center">Scaling Demo</h1>
         <div class="row">
 
-
-            <div class="col-lg-8">
-                <h2 class="text-center">output</h2>
-                <img id="output" class="img-fluid">
-            </div>
-
             <form class="col-lg-4">
                 <h2 class="text-center">Options</h2>
 
@@ -44,19 +38,34 @@
                     </div>
                 {% endfor %}
 
-                <input class="my-4 btn btn-block btn-primary" type="submit" value="Go!" />
+                <input id="submit" class="my-4 btn btn-block btn-primary" type="submit" value="Go!" />
             </form>
+
+            <div class="col-lg-8">
+                <h2 class="text-center">output</h2>
+                <img id="output" class="img-fluid" src="/static/placeholder.png">
+            </div>
 
         </div>
     </div>
 
     <script>
         const $form = $('form');
+        const $output = $('#output');
+        const $submitBtn = $('#submit')
+
         const handleFormSubmission = e => {
             e.preventDefault();
-            console.log($form.serialize());
-            $('#output').attr('src', '/scaling-viz?' + $form.serialize())
+            console.log('Updating image source')
+
+            $output.attr('src', '/scaling-viz?' + $form.serialize())
+
+            $submitBtn.addClass('disabled');
+            $output.on('load', () => {
+                $submitBtn.removeClass('disabled');
+            });
         };
+
         $form.submit(handleFormSubmission);
 
     </script>
