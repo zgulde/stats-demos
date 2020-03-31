@@ -1,3 +1,1 @@
-- styling
-- image loading spinner or st
 - error handling
